@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,20 +27,10 @@ public class course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer course_id;
-    private LocalDate start_time;
-    private String description;
+    private String program;
+    private String level;
     private float price;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "courseType_id")
-    private courseType courseType_id;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "level_id")
-    private level level_id;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "period_id")
-    private period period_id;
+    private String schedule;
+    private LocalDate openning;
 
 }

@@ -33,13 +33,11 @@ public class courseService {
         if (fromDB == null){
             return null;
         }
-        fromDB.setCourseType_id(course.getCourseType_id());
-        fromDB.setPeriod_id(course.getPeriod_id());
+        fromDB.setProgram(course.getProgram());
+        fromDB.setLevel(course.getLevel());
         fromDB.setPrice(course.getPrice());
-        fromDB.setStart_time(course.getStart_time());
-        fromDB.setCourseType_id(course.getCourseType_id());
-        fromDB.setDescription(course.getDescription());
-        fromDB.setLevel_id(course.getLevel_id());
+        fromDB.setSchedule(course.getSchedule());
+        fromDB.setOpenning(course.getOpenning());
         return courseRepository.save(fromDB);
     }
      
