@@ -38,6 +38,7 @@ public class courseService {
         fromDB.setPrice(course.getPrice());
         fromDB.setSchedule(course.getSchedule());
         fromDB.setOpenning(course.getOpenning());
+        fromDB.setTime(course.getTime());
         return courseRepository.save(fromDB);
     }
      
