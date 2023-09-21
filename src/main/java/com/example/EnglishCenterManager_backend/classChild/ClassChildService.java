@@ -7,11 +7,7 @@ import com.example.EnglishCenterManager_backend.course.courseRepository;
 import com.example.EnglishCenterManager_backend.user.User;
 import com.example.EnglishCenterManager_backend.user.UserRepository;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-
-import javax.swing.text.html.Option;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
