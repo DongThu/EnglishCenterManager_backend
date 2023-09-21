@@ -24,5 +24,10 @@ public class course {
     private String schedule;
     private LocalDate openning;
     private String time;
+    
+    public course(Integer course_id) {
+        this.course_id = course_id;
+    }
 
+    
 }
