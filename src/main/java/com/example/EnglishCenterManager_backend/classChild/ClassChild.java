@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,11 +21,11 @@ import lombok.NoArgsConstructor;
 @Entity
 public class ClassChild {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Đánh dấu đây là ID
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // trường tăng tự động
     private Integer id;
        
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "userId")
     private User user;
 

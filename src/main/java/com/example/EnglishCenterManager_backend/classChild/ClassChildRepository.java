@@ -17,4 +17,7 @@ public interface ClassChildRepository extends JpaRepository<ClassChild,Integer>{
 
     @Query("SELECT cs.course.program, cs.course.level, cs.course.price, cs.course.schedule, cs.course.openning, cs.course.time FROM ClassChild cs WHERE cs.course.id = :courseId")
     List<Object[]> findCourseInfoByCourseId(@Param("courseId") Integer courseId);
+
+    @Query("SELECT c.course.program, c.course.level, c.course.price, c.course.schedule, c.course.openning, c.course.time, c.user.username, c.user.phone FROM ClassChild c")
+    List<Object[]> getClassChildDetails();
 }

@@ -34,6 +34,7 @@ public class InfoTeacherService {
         fromDB.setEmail(teacher.getEmail());
         fromDB.setPhone(teacher.getPhone());
         fromDB.setAddress(teacher.getAddress());
+        fromDB.setTeachProgram(teacher.getTeachProgram());
         return teacherRepository.save(fromDB);
     }
      

@@ -6,13 +6,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@Entity
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name="infoteacher")
 public class InfoTeacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +26,7 @@ public class InfoTeacher {
     private String email;
     private Number phone;
     private String address;
+    private String teachProgram;
+
+
 }

@@ -27,6 +27,11 @@ public class ClassChildResourse {
         return classChildService.getAll();
     }
 
+    // @GetMapping
+    // public ResponseEntity<List<ClassChildReponseDTO>> getClassChildDetails() {
+    //     List<ClassChildReponseDTO> classChildDetails = classChildService.getClassChildDetails();
+    //     return ResponseEntity.ok(classChildDetails);
+    // }
     // @PostMapping("")
     // public ClassChild registerStudent(@RequestBody ClassChildRequestDTO request) {
     //     return classChildService.registerCourse(request);
@@ -38,10 +43,12 @@ public class ClassChildResourse {
     }
 
 
-    @GetMapping
-    public List<Object[]> getAllCourseStudentsWithStudentName() {
-        return classChildService.getAllCourseStudentsWithStudentName();
-    }
+    // @GetMapping
+    // public List<Object[]> getAllCourseStudentsWithStudentName() {
+    //     return classChildService.getAllCourseStudentsWithStudentName();
+    // }
+
+
 
     //  @PostMapping("")
     // public ResponseEntity<String> registerCourseStudent(@RequestBody ClassChildRequestDTO request) {
