@@ -1,5 +1,6 @@
 package com.example.EnglishCenterManager_backend.course;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,13 @@ public class courseResourse {
     @GetMapping("/all")
     public List<course> getAllCourse() {
         return courseService.getAll();
+    }
+
+    @PostMapping("/programOpenning")
+    public course findByProgramAndOpenning(@RequestBody courseRequestDTO requestDTO) {
+        String program = requestDTO.getProgram();
+        LocalDate openning = requestDTO.getOpenning();
+        return courseService.findByProgramAndOpenning(program, openning);
     }
 
     @PostMapping("/add")

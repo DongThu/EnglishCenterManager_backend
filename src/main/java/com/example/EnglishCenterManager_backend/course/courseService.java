@@ -1,5 +1,6 @@
 package com.example.EnglishCenterManager_backend.course;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,11 @@ public class courseService {
     public List<course> getAll(){
         return courseRepository.findAll();
     }
+
+    public course findByProgramAndOpenning(String program, LocalDate openning){
+        return courseRepository.findByProgramAndOpenning(program, openning);
+    }
+    
     @Transactional
     public void addCourse(course Course){
         courseRepository.save(Course);
@@ -45,4 +51,6 @@ public class courseService {
     public Optional<course> getCourseById(Integer id){
         return courseRepository.findById(id);
     }
+
+    
 }

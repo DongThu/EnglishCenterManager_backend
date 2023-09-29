@@ -29,8 +29,8 @@ public class ClassChildService {
 
     private courseRepository courseRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+    // @Autowired
+    // private ModelMapper modelMapper;
 
     public ClassChildService(ClassChildRepository classChildRepository, UserRepository userRepository, courseRepository courseRepository) {
         this.classChildRepository = classChildRepository;
