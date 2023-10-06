@@ -1,23 +1,16 @@
 package com.example.EnglishCenterManager_backend.classChild;
 
 import org.springframework.stereotype.Service;
-import org.modelmapper.convention.MatchingStrategies;
-import org.modelmapper.spi.MappingContext;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.Converter;
 
 import com.example.EnglishCenterManager_backend.course.course;
 import com.example.EnglishCenterManager_backend.course.courseRepository;
 import com.example.EnglishCenterManager_backend.user.User;
 import com.example.EnglishCenterManager_backend.user.UserRepository;
 
-import jakarta.annotation.PostConstruct;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 
 @Service
 public class ClassChildService {
@@ -172,5 +165,8 @@ public class ClassChildService {
         classChildRepository.save(classChild);
     }
 
+    public void deleteChildClass(Integer id){
+        classChildRepository.deleteById(id);
+    }
 
 }

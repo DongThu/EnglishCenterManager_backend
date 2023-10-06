@@ -1,6 +1,5 @@
 package com.example.EnglishCenterManager_backend.timetable;
 
-import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

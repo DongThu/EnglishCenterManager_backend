@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.example.EnglishCenterManager_backend.config.JwtGenerator;
 import com.example.EnglishCenterManager_backend.exception.UsernameAlreadyExistsException;
 import com.example.EnglishCenterManager_backend.login.LoginDTO;
+import com.example.EnglishCenterManager_backend.registerCourse.RegisterCourse;
 import com.example.EnglishCenterManager_backend.role.Role;
 import com.example.EnglishCenterManager_backend.role.RoleRepository;
 
@@ -87,5 +88,12 @@ public class UserService {
         }
     }
 
+    public List<User> getListRegister(){
+        return userRepository.findAll();
+    }
+
+    public void deleteRegister(Integer id){
+        userRepository.deleteById(id);
+    }
 }
 
