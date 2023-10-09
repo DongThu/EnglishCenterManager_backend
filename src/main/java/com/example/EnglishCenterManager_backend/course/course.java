@@ -1,10 +1,16 @@
 package com.example.EnglishCenterManager_backend.course;
 
 import java.time.LocalDate;
+
+import com.example.EnglishCenterManager_backend.courseType.courseType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +24,10 @@ public class course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer course_id;
+        
+    @ManyToOne
+    @JoinColumn(name = "englishId")
+    private courseType english;
     private String program;
     private String level;
     private float price;

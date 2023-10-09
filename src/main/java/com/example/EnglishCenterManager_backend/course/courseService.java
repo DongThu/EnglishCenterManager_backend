@@ -7,6 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.EnglishCenterManager_backend.courseType.courseType;
+import com.example.EnglishCenterManager_backend.courseType.courseTypeRepository;
+import com.example.EnglishCenterManager_backend.courseType.courseType;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -14,6 +17,13 @@ public class courseService {
 
     @Autowired
     private courseRepository courseRepository;
+
+    private courseTypeRepository courseTypeRepository;
+
+    public courseService(courseRepository courseRepository, courseTypeRepository courseTypeRepository){
+        this.courseRepository = courseRepository;
+        this.courseTypeRepository = courseTypeRepository;
+    }
 
     public List<course> getAll(){
         return courseRepository.findAll();
@@ -24,8 +34,20 @@ public class courseService {
     }
     
     @Transactional
-    public void addCourse(course Course){
-        courseRepository.save(Course);
+    public void addCourse(Integer id, String program, String level, float price, String schedule, LocalDate openning, String time){
+        courseType english = courseTypeRepository.findByIdEnglish(id);
+        
+        course course2 = new course();
+
+        course2.setEnglish(english);
+        course2.setProgram(program);
+        course2.setLevel(level);
+        course2.setPrice(price);
+        course2.setSchedule(schedule);
+        course2.setOpenning(openning);
+        course2.setTime(time);
+
+        courseRepository.save(course2);
     }
     public void deleteCourse(Integer id){
         courseRepository.deleteById(id);
@@ -52,5 +74,27 @@ public class courseService {
         return courseRepository.findById(id);
     }
 
-    
+    public List<course> findCoursesByEnglishId() {
+        List<course> courses = courseRepository.findByEnglishId(1);
+        return courses;
+    }
+    public List<course> findCoursesByEnglishId2() {
+        List<course> courses = courseRepository.findByEnglishId(2);
+        return courses;
+    }    
+
+     public List<course> findCoursesByEnglishId3() {
+        List<course> courses = courseRepository.findByEnglishId(3);
+        return courses;
+    }
+
+    public List<course> findCoursesByEnglishId4() {
+        List<course> courses = courseRepository.findByEnglishId(4);
+        return courses;
+    }
+
+    public List<course> findCoursesByEnglishId5() {
+        List<course> courses = courseRepository.findByEnglishId(5);
+        return courses;
+    }
 }

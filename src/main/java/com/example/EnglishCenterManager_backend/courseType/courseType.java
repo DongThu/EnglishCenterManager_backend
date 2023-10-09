@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 public class courseType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer courseType_id;
-    private String courseTypeName;
+    private Integer id;
+    private String englishName;
 
     // @OneToMany(cascade = CascadeType.ALL)
     // @JoinColumn(name = "course_id")

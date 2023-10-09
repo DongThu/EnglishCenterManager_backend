@@ -37,8 +37,8 @@ public class courseResourse {
     }
 
     @PostMapping("/add")
-     public ResponseEntity<course> addCourse( @RequestBody course Course){
-        courseService.addCourse(Course);
+     public ResponseEntity<String> addCourse( @RequestBody courseRequest request){
+        courseService.addCourse(request.getId(), request.getProgram(), request.getLevel(), request.getPrice(), request.getSchedule(), request.getOpenning(), request.getTime());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -56,5 +56,30 @@ public class courseResourse {
     @GetMapping("/{id}")
     public Optional<course> getCourseById(@PathVariable("id") Integer id){
        return courseService.getCourseById(id);
+    }
+
+    @GetMapping("/getEnglish")
+    public List<course> findByEnglishId(){
+       return courseService.findCoursesByEnglishId();
+    }
+
+     @GetMapping("/getEnglish2")
+    public List<course> findByEnglishId2(){
+       return courseService.findCoursesByEnglishId2();
+    }
+
+     @GetMapping("/getEnglish3")
+    public List<course> findByEnglishId3(){
+       return courseService.findCoursesByEnglishId3();
+    }
+
+     @GetMapping("/getEnglish4")
+    public List<course> findByEnglishId4(){
+       return courseService.findCoursesByEnglishId4();
+    }
+
+     @GetMapping("/getEnglish5")
+    public List<course> findByEnglishId5(){
+       return courseService.findCoursesByEnglishId5();
     }
 }
