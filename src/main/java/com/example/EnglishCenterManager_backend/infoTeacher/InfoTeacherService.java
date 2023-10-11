@@ -41,6 +41,14 @@ public class InfoTeacherService {
     public Optional<InfoTeacher> getTeacherById(Integer id){
         return teacherRepository.findById(id);
     }
+
+    public  InfoTeacher getEmail(String email){
+            return teacherRepository.findByEmail(email);
+    }
+
+    public  String getTeacherEmailById(Integer id){
+        return teacherRepository.getTeacherEmailById(id);
+    }
 }
 
 

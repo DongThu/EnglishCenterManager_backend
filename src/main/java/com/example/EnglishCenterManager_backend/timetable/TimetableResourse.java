@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacher;
+import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacherRepository;
+import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacherService;
+
 
 
 @RestController
@@ -24,6 +28,12 @@ public class TimetableResourse {
     
     @Autowired
     private TimetableService timetableService;
+    
+    @Autowired
+    private InfoTeacherRepository infoTeacheRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     @PostMapping("")
     public ResponseEntity<String> createTimetable(@RequestBody TimetableRequestDTO request) {
@@ -44,6 +54,11 @@ public class TimetableResourse {
         return timetableService.getTimetable();
     }
 
+    @GetMapping("/teacher/{teacherId}")
+    public List<Timetable> findByTeacherId(@PathVariable Integer teacherId) {
+        return timetableService.findByTeacherId(teacherId);
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Timetable> deleteTimetable(@PathVariable("id") Integer id){
         timetableService.deleteTimetable(id);
@@ -59,4 +74,22 @@ public class TimetableResourse {
     public Optional<Timetable> getTimetableId(@PathVariable("id") Integer id){
        return timetableService.getTimetableId(id);
     }
+
+    // @PostMapping("/sendEmail/{teacherId}")
+    // public void sendTimetableEmail(@PathVariable Integer teacherId) {
+    //    List<Timetable> timetables = timetableService.findByTeacherId(teacherId);
+    //    String teacher = infoTeacheRepository.getTeacherEmailById(teacherId);
+    //    System.out.println("Địa chỉ email người nhận: " + teacher);
+    //    emailService.sendTimetableEmail(teacher, timetables);
+    // }
+
+    @PostMapping("/sendEmail/{teacherId}")
+    public List<Timetable>  sendTimetableEmail(@PathVariable Integer teacherId) {
+        List<Timetable> timetables = timetableService.findByTeacherId(teacherId);
+        String teacherEmail = infoTeacheRepository.getTeacherEmailById(teacherId);
+        emailService.sendTimetableEmailToTeacher(teacherEmail, timetables);
+        return timetables;
+    }
+    
 }
+

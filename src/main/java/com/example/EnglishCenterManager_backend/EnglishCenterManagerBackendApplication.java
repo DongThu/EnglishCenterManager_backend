@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+
 @SpringBootApplication
 public class EnglishCenterManagerBackendApplication {
 
@@ -13,9 +14,13 @@ public class EnglishCenterManagerBackendApplication {
 		
 	}
 
-	@Bean
-	public ModelMapper ModelMapper(){
-		return new ModelMapper();
-	}
+	// @Bean
+    // public EmailService emailService() {
+    //     return new EmailService();
+    // }
+	// @Bean
+	// public ModelMapper ModelMapper(){
+	// 	return new ModelMapper();
+	// }
 
 }

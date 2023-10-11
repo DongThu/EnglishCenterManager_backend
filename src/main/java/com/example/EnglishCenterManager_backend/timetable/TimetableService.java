@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.example.EnglishCenterManager_backend.course.course;
@@ -17,6 +19,9 @@ public class TimetableService {
 
     @Autowired
     private TimetableRepository timetableRepository;
+
+    // @Autowired
+    // private EmailService emailService;
 
     private InfoTeacherRepository infoTeacherRepository;
 
@@ -90,5 +95,16 @@ public class TimetableService {
         return timetableRepository.findById(id);
     }
 
+    public List<Timetable> findByTeacherId(Integer teacherId){
+            return timetableRepository.findByTeacherId(teacherId);
+    }
 
+    // public class EmailService {
+    //     public void sendTimetableEmail(String email, List<Timetable> timetables) {
+    //         emailService.sendTimetableEmail(email, timetables);
+    //     }
+    // }
+
+    public void sendTimetableEmail(String email, List<Timetable> timetables) {
+    }
 }

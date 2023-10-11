@@ -49,4 +49,14 @@ public class InfoTeacherResourse {
     public Optional<InfoTeacher> getTeacherById(@PathVariable("id") Integer id){
        return infoTeacherService.getTeacherById(id);
     }
+
+    @GetMapping("/find/email/{email}")
+    public InfoTeacher getEmail(@PathVariable("email") String email){
+       return infoTeacherService.getEmail(email);
+    }
+
+    @GetMapping("/find/{id}")
+    public String getTeacherEmailById(@PathVariable("id") Integer id){
+       return infoTeacherService.getTeacherEmailById(id);
+    }
 }
