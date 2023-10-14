@@ -90,6 +90,20 @@ public class TimetableResourse {
         emailService.sendTimetableEmailToTeacher(teacherEmail, timetables);
         return timetables;
     }
+
+    @GetMapping("find/timetable/{courseId}")
+        public ResponseEntity<?> findByCourseId(@PathVariable Integer courseId){
+            Optional<Timetable> timetable = timetableService.findByCourseId(courseId);
+            if (timetable.isPresent()) {
+                return ResponseEntity.ok(timetable.get().getId());
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        }
+    // @GetMapping("/find/timetable/{userId}")
+    // public Timetable findTimetableUser(@PathVariable Integer userId){
+    //     return timetableService.findTimetableUser(userId);
+    // }
     
 }
 

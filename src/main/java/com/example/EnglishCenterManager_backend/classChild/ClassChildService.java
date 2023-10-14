@@ -9,6 +9,7 @@ import com.example.EnglishCenterManager_backend.user.UserRepository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -169,4 +170,11 @@ public class ClassChildService {
         classChildRepository.deleteById(id);
     }
 
+    public Optional<ClassChild> findById(Integer id){
+        return classChildRepository.findById(id);
+    }
+
+    public List<ClassChild> findByUserId(Integer userId){
+        return classChildRepository.findByUserId(userId);
+    }
 }

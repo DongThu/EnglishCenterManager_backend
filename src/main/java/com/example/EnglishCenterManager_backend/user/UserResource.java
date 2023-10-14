@@ -1,9 +1,9 @@
 package com.example.EnglishCenterManager_backend.user;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.EnglishCenterManager_backend.authentication.AuthResponseDTO;
 import com.example.EnglishCenterManager_backend.login.LoginDTO;
 import com.example.EnglishCenterManager_backend.message.SuccessMessage;
-import com.example.EnglishCenterManager_backend.registerCourse.RegisterCourse;
 
 import jakarta.validation.Valid;
 
@@ -56,8 +55,23 @@ public class UserResource {
         return userService.getListRegister();
     }
 
+    @GetMapping("/{id}")
+    public Optional<User> getUserById(@PathVariable("id") Integer id) {
+        return userService.getUserById(id);
+    }
+
     @DeleteMapping("delete/{id}")
     public void deleteRegister(@PathVariable Integer id){
         userService.deleteRegister(id);
     }
+
+    @GetMapping("find/username/{username}")
+        public ResponseEntity<?> findByUsername(@PathVariable String username){
+            Optional<User> user = userService.findByUsername(username);
+            if (user.isPresent()) {
+                return ResponseEntity.ok(user.get().getId());
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        }
 }

@@ -1,6 +1,7 @@
 package com.example.EnglishCenterManager_backend.classChild;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,11 +39,19 @@ public class ClassChildResourse {
     //     return classChildService.registerCourse(request);
     // }
 
-    @GetMapping("/{courseId}")
-    public List<Object[]> findClassChildWithUserName(@PathVariable Integer courseId) {
-        return classChildService.findClassChildWithUserName(courseId);
+    // @GetMapping("/{courseId}")
+    // public List<Object[]> findClassChildWithUserName(@PathVariable Integer courseId) {
+    //     return classChildService.findClassChildWithUserName(courseId);
+    // }
+    @GetMapping("/{id}")
+    public Optional<ClassChild> findById(@PathVariable Integer id) {
+        return classChildService.findById(id);
     }
 
+    @GetMapping("/user/{id}")
+    public List<ClassChild> findByUserId(@PathVariable Integer id) {
+        return classChildService.findByUserId(id);
+    }
 
     // @GetMapping
     // public List<Object[]> getAllCourseStudentsWithStudentName() {
@@ -73,5 +82,15 @@ public class ClassChildResourse {
     @DeleteMapping("/delete/{id}")
     public void deleteChildClass(@PathVariable("id") Integer id){
         classChildService.deleteChildClass(id);
+    }
+
+    @GetMapping("find/courseId/{classChildId}")
+    public ResponseEntity<?> findByUsername(@PathVariable Integer classChildId){
+        Optional<ClassChild> classChild = classChildService.findById(classChildId);
+        if (classChild.isPresent()) {
+            return ResponseEntity.ok(classChild.get().getCourse().getCourse_id());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

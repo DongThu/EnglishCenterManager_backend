@@ -5,6 +5,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -93,6 +94,17 @@ public class UserService {
 
     public void deleteRegister(Integer id){
         userRepository.deleteById(id);
+    }
+
+    public Optional<User> getUserById(Integer id){
+       return userRepository.findById(id);
+    }
+
+     public Optional<User> findByUsername(String username){
+       return userRepository.findByUsername(username);
+    }
+
+    public void findByUsernameusername() {
     }
 }
 

@@ -99,6 +99,9 @@ public class TimetableService {
             return timetableRepository.findByTeacherId(teacherId);
     }
 
+    public Optional<Timetable> findByCourseId(Integer courseId){
+            return timetableRepository.findByCourseId(courseId);
+    }
     // public class EmailService {
     //     public void sendTimetableEmail(String email, List<Timetable> timetables) {
     //         emailService.sendTimetableEmail(email, timetables);
@@ -107,4 +110,8 @@ public class TimetableService {
 
     public void sendTimetableEmail(String email, List<Timetable> timetables) {
     }
+
+    // public Timetable findTimetableUser(Integer userId){
+    //     return timetableRepository.findTimetableUser(userId);
+    // }
 }

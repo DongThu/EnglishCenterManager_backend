@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.example.EnglishCenterManager_backend.timetable.Timetable;
+
 
 public interface ClassChildRepository extends JpaRepository<ClassChild,Integer>{
 
@@ -20,4 +22,10 @@ public interface ClassChildRepository extends JpaRepository<ClassChild,Integer>{
 
     @Query("SELECT c.course.program, c.course.level, c.course.price, c.course.schedule, c.course.openning, c.course.time, c.user.username, c.user.phone FROM ClassChild c")
     List<Object[]> getClassChildDetails();
+
+    @Query("SELECT t FROM ClassChild t WHERE t.user.id = :userId")
+    List<ClassChild> findByUserId(@Param("userId") Integer userId);
+
+    // @Query("SELECT c.program, c.openning, c.schedule, t.classroom, t.teacher FROM ClassChild c JOIN course c ON  WHERE t.user.id = :userId")
+    // List<ClassChild> findByTimetableUserId(@Param("userId") Integer userId);
 }
