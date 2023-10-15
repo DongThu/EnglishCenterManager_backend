@@ -3,6 +3,7 @@ package com.example.EnglishCenterManager_backend.course;
 import java.time.LocalDate;
 
 import com.example.EnglishCenterManager_backend.courseType.courseType;
+import com.example.EnglishCenterManager_backend.level.level;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

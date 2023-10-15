@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.EnglishCenterManager_backend.courseType.courseType;
+import com.example.EnglishCenterManager_backend.courseType.courseTypeRepository;
+
 import jakarta.transaction.Transactional;
 
 import java.io.IOException;
@@ -17,6 +20,12 @@ public class DocumentService {
     @Autowired
     private DocumentRepository documentRepository;
 
+    private courseTypeRepository courseTypeRepository;
+
+    public DocumentService(DocumentRepository documentRepository, courseTypeRepository courseTypeRepository){
+        this.documentRepository = documentRepository;
+        this.courseTypeRepository = courseTypeRepository;
+    }
     public void addDocument(Document document){
         documentRepository.save(document);
     }
@@ -38,13 +47,16 @@ public class DocumentService {
     //     return documentRepository.save(document);
     // }
 
-    public String uploadDocument(MultipartFile file, String nameD, String typeD) throws IOException {
+    public String uploadDocument(MultipartFile file, Integer nameD/*, String typeD */) throws IOException {
+
+         courseType courseType = courseTypeRepository.findByIdEnglish(nameD);
+            // .orElseThrow(() -> new ResourceNotFoundException("Course Type not found with id: " + nameD));
 
         Document document = documentRepository.save(Document.builder()
                 .nameDocument(file.getOriginalFilename())
                 .typeDocument(file.getContentType())
-                .nameD(nameD)
-                .typeD(typeD)
+                .nameD(courseType)
+                // .typeD(typeD)
                 .fileData(DocumentUtils.compressDocument(file.getBytes())).build());
         if (document != null) {
             return "file uploaded successfully : " + file.getOriginalFilename();
@@ -65,5 +77,13 @@ public class DocumentService {
 
     public void deleteDocument(Integer id){
         documentRepository.deleteById(id);
+    }
+
+    public Optional<Document> findByDocumentId(Integer englishId){
+        return documentRepository.findByDocumentId(englishId);
+    }
+
+        public Optional<Document> findById(Integer englishId){
+        return documentRepository.findById(englishId);
     }
 }

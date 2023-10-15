@@ -2,6 +2,7 @@ package com.example.EnglishCenterManager_backend.document;
 
 import org.springframework.web.multipart.MultipartFile;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,9 +12,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DocumentRequestDTO {
     
-    private String nameDocument;
+    private Integer nameDocument;
 
-    private String typeDocument;
+    // private String typeDocument;
 
     private MultipartFile file;
 }

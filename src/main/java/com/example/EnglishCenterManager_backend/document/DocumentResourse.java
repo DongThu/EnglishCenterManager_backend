@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.EnglishCenterManager_backend.classChild.ClassChild;
+import com.example.EnglishCenterManager_backend.courseType.courseType;
 import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacher;
 
 @RestController
@@ -43,8 +45,8 @@ public class DocumentResourse {
     }
 
     @PostMapping
-	public ResponseEntity<?> uploadDocument(@RequestParam("nameDocument")MultipartFile file, @RequestParam("nameD") String nameD, @RequestParam("typeD") String typeD) throws IOException {
-		String uploadDocument = documentService.uploadDocument(file, nameD, typeD);
+	public ResponseEntity<?> uploadDocument(@RequestParam("nameDocument")MultipartFile file, @RequestParam("nameD") Integer nameD/* , @RequestParam("typeD") String typeD*/) throws IOException {
+		String uploadDocument = documentService.uploadDocument(file, nameD/*  ,typeD*/);
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(uploadDocument);
 	}
@@ -68,9 +70,26 @@ public class DocumentResourse {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<InfoTeacher> deleteCTeacher(@PathVariable("id") Integer id){
+    public ResponseEntity<Document> deleteCTeacher(@PathVariable("id") Integer id){
         documentService.deleteDocument(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("get/englishId/{englishId}")
+    public  ResponseEntity<?> findByDocumentId(@PathVariable Integer englishId){
+         Optional<Document> classChild = documentService.findByDocumentId(englishId);
+         if (classChild.isPresent()) {
+            return ResponseEntity.ok(classChild.get().getId());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+        
+    }
+
+    @GetMapping("find/englishId/{englishId}")
+    public Optional<Document> findById(@PathVariable  Integer englishId){
+      return  documentService.findById(englishId);
+        
     }
 }
 

@@ -85,10 +85,21 @@ public class ClassChildResourse {
     }
 
     @GetMapping("find/courseId/{classChildId}")
-    public ResponseEntity<?> findByUsername(@PathVariable Integer classChildId){
+    public ResponseEntity<?> findByclassChildId(@PathVariable Integer classChildId){
         Optional<ClassChild> classChild = classChildService.findById(classChildId);
         if (classChild.isPresent()) {
             return ResponseEntity.ok(classChild.get().getCourse().getCourse_id());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // lấy id chương trình english để lấy thông tin tài liệu cho user
+    @GetMapping("find/EnglishId/{id}")
+    public ResponseEntity<?> findByEnglishId(@PathVariable Integer id) {
+        Optional<ClassChild> classChild = classChildService.findById(id);
+         if (classChild.isPresent()) {
+            return ResponseEntity.ok(classChild.get().getCourse().getEnglish().getId());
         } else {
             return ResponseEntity.notFound().build();
         }

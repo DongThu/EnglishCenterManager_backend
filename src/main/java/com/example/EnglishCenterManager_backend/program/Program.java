@@ -1,8 +1,8 @@
-package com.example.EnglishCenterManager_backend.level;
+package com.example.EnglishCenterManager_backend.program;
 
-import com.example.EnglishCenterManager_backend.course.course;
+import org.hibernate.annotations.ManyToAny;
+
 import com.example.EnglishCenterManager_backend.courseType.courseType;
-import com.example.EnglishCenterManager_backend.program.Program;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -11,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,14 +19,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class level {
+public class Program {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer level_id;
+    private Integer id;
 
-    private String levelName;
-
+    private String programName;
+    
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "englishId")
-    private Program english;
+    private courseType english;
 }

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.EnglishCenterManager_backend.courseType.courseType;
 import com.example.EnglishCenterManager_backend.courseType.courseTypeRepository;
+import com.example.EnglishCenterManager_backend.level.level;
+import com.example.EnglishCenterManager_backend.level.levelRepository;
 import com.example.EnglishCenterManager_backend.courseType.courseType;
 import jakarta.transaction.Transactional;
 
@@ -20,9 +22,12 @@ public class courseService {
 
     private courseTypeRepository courseTypeRepository;
 
-    public courseService(courseRepository courseRepository, courseTypeRepository courseTypeRepository){
+    private levelRepository levelRepository;
+
+    public courseService(courseRepository courseRepository, courseTypeRepository courseTypeRepository,  levelRepository levelRepository){
         this.courseRepository = courseRepository;
         this.courseTypeRepository = courseTypeRepository;
+        this.levelRepository = levelRepository;
     }
 
     public List<course> getAll(){
@@ -37,8 +42,10 @@ public class courseService {
     public void addCourse(Integer id, String program, String level, float price, String schedule, LocalDate openning, String time){
         courseType english = courseTypeRepository.findByIdEnglish(id);
         
-        course course2 = new course();
+        // level level = levelRepository.findByIdLevel(levelId);
 
+        course course2 = new course();
+        
         course2.setEnglish(english);
         course2.setProgram(program);
         course2.setLevel(level);

@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.EnglishCenterManager_backend.courseType.courseType;
 @Repository
 public interface courseRepository extends JpaRepository<course, Integer>{
 
@@ -17,7 +16,7 @@ public interface courseRepository extends JpaRepository<course, Integer>{
     course findByProgram(@Param("program") String program);
 
     
-    course findByProgramAndLevelAndPriceAndScheduleAndOpenningAndTime(String program, String level, float price, String schedule, LocalDate openning, String time);
+    // course findByProgramAndLevelAndPriceAndScheduleAndOpenningAndTime(String program, String level, float price, String schedule, LocalDate openning, String time);
 
     @Query("SELECT c FROM course c WHERE c.id = :id")
     course findCourseById(@Param("id") Integer id);
