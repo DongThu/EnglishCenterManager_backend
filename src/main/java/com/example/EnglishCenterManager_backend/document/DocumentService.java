@@ -79,6 +79,7 @@ public class DocumentService {
         documentRepository.deleteById(id);
     }
 
+    @Transactional 
     public Optional<Document> findByDocumentId(Integer englishId){
         return documentRepository.findByDocumentId(englishId);
     }
