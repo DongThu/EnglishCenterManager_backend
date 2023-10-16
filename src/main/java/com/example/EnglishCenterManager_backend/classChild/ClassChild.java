@@ -34,7 +34,7 @@ public class ClassChild {
     @JoinColumn(name = "courseId")
     private course course;
 
-
+    private Integer status = 0;
     public ClassChild(User user, course course) {
         this.user = user;
         this.course = course;
