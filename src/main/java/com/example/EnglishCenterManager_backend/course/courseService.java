@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.EnglishCenterManager_backend.courseType.courseType;
 import com.example.EnglishCenterManager_backend.courseType.courseTypeRepository;
-import com.example.EnglishCenterManager_backend.level.level;
 import com.example.EnglishCenterManager_backend.level.levelRepository;
-import com.example.EnglishCenterManager_backend.courseType.courseType;
 import jakarta.transaction.Transactional;
 
 @Service
