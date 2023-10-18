@@ -16,9 +16,6 @@ import java.util.Map;
 import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,12 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.EnglishCenterManager_backend.classChild.ClassChild;
 import com.example.EnglishCenterManager_backend.classChild.ClassChildRepository;
-
-// import com.Dormitory.contract.Contract;
-// import com.Dormitory.contract.ContractRepository;
-// import com.Dormitory.exception.NotFoundException;
-// import com.Dormitory.registerservice.RegisterServices;
-// import com.Dormitory.registerservice.RegisterServicesRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.websocket.server.PathParam;

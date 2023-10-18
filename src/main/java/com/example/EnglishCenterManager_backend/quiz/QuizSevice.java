@@ -57,7 +57,7 @@ public class QuizSevice {
 
         int i=0;
         for(Response response: responses){
-            if(response.getResponse().equals(questions.get(id).getRightAnswer()))
+            if(response.getResponse().equals(questions.get(i).getRightAnswer()))
 
                 right++;
 
