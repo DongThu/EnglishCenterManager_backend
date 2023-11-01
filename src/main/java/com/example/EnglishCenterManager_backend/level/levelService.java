@@ -3,8 +3,6 @@ package com.example.EnglishCenterManager_backend.level;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.EnglishCenterManager_backend.courseType.courseType;
-import com.example.EnglishCenterManager_backend.courseType.courseTypeRepository;
 import com.example.EnglishCenterManager_backend.program.Program;
 import com.example.EnglishCenterManager_backend.program.ProgramRepository;
 

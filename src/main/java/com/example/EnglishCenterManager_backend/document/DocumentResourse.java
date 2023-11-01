@@ -21,9 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.EnglishCenterManager_backend.classChild.ClassChild;
-import com.example.EnglishCenterManager_backend.courseType.courseType;
-import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacher;
 
 @RestController
 @RequestMapping("document")

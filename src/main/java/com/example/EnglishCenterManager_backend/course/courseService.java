@@ -20,12 +20,12 @@ public class courseService {
 
     private courseTypeRepository courseTypeRepository;
 
-    private levelRepository levelRepository;
+    // private levelRepository levelRepository;
 
     public courseService(courseRepository courseRepository, courseTypeRepository courseTypeRepository,  levelRepository levelRepository){
         this.courseRepository = courseRepository;
         this.courseTypeRepository = courseTypeRepository;
-        this.levelRepository = levelRepository;
+        // this.levelRepository = levelRepository;
     }
 
     public List<course> getAll(){

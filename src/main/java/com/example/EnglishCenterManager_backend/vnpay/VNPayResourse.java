@@ -46,11 +46,11 @@ public class VNPayResourse {
                 .orElseThrow(() -> new IllegalArgumentException("Không tồn tại hợp đồng này của sinh viên"));
             contract.setStatus(1);
             contractRepository.save(contract);
-            response.sendRedirect("http://localhost:4200/");
+            response.sendRedirect("http://localhost:4200/user-course-manager");
             } else {
                 // Giao dịch thất bại
                 // Thực hiện các xử lý cần thiết, ví dụ: không cập nhật CSDL\
-                response.sendRedirect("http://localhost:4200/home-user");
+                response.sendRedirect("http://localhost:4200/user-course-manager");
                 
             }
         }

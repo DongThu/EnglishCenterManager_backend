@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.example.EnglishCenterManager_backend.courseType.courseType;
 import com.example.EnglishCenterManager_backend.courseType.courseTypeRepository;
 
-import jakarta.transaction.Transactional;
 
 @Service
 public class ProgramService {

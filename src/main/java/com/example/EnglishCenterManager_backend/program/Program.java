@@ -1,6 +1,5 @@
 package com.example.EnglishCenterManager_backend.program;
 
-import org.hibernate.annotations.ManyToAny;
 
 import com.example.EnglishCenterManager_backend.courseType.courseType;
 
@@ -11,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -3,7 +3,6 @@ package com.example.EnglishCenterManager_backend.course;
 import java.time.LocalDate;
 
 import com.example.EnglishCenterManager_backend.courseType.courseType;
-import com.example.EnglishCenterManager_backend.level.level;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,11 +10,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 @Entity
 @Data
 @NoArgsConstructor

@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacher;
 import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacherRepository;
-import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacherService;
 
 
 

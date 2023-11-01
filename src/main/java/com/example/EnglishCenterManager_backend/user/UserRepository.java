@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.example.EnglishCenterManager_backend.quiz.Quiz;
+
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
@@ -26,5 +28,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     User findByUsernameAndPhone(String username, Number phone);
     
+    @Query("SELECT c FROM User c WHERE c.id = :id")
+    User findUserById(@Param("id") Integer id);
+
     
 }

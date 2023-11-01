@@ -1,8 +1,9 @@
-package com.example.EnglishCenterManager_backend.level;
+package com.example.EnglishCenterManager_backend.examStudent;
 
-import com.example.EnglishCenterManager_backend.program.Program;
 
-import jakarta.persistence.CascadeType;
+import com.example.EnglishCenterManager_backend.exam.Exam;
+import com.example.EnglishCenterManager_backend.user.User;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,18 +13,24 @@ import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class level {
+public class ExamStudent {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer level_id;
+    private Integer id;
 
-    private String levelName;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "englishId")
-    private Program english;
+    @ManyToOne
+    @JoinColumn(name = "examId")
+    private Exam exam;
+
+    private Integer score;
 }
