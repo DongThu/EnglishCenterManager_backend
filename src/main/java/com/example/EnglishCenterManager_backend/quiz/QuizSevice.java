@@ -66,4 +66,11 @@ public class QuizSevice {
         return new ResponseEntity<>(right,HttpStatus.OK);
     }
     
+    public List<Quiz> getAll(){
+        return quizRepository.findAll();
+    }
+
+    public void delete(Integer id){
+        quizRepository.deleteById(id);
+    }
 }

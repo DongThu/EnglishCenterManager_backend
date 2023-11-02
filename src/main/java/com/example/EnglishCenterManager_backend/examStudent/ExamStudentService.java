@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.EnglishCenterManager_backend.classChild.ClassChild;
 import com.example.EnglishCenterManager_backend.exam.Exam;
 import com.example.EnglishCenterManager_backend.exam.ExamRepository;
 import com.example.EnglishCenterManager_backend.user.User;

@@ -42,4 +42,9 @@ public class ExamService {
 
     public List<Exam> findByCourseId(Integer courseId){
         return examRepository.findByCourseId(courseId);
-    }}
+    }
+
+    public void delete(Integer id){
+        examRepository.deleteById(id);
+    }
+}

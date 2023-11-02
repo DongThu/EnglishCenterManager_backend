@@ -23,4 +23,8 @@ public class QuestionService {
     public List<Question> getQuestionByCategory(String category){
         return questionRepository.findByCategory(category);
     }
+
+    public void delete(Integer id){
+        questionRepository.deleteById(id);
+    }
 }
