@@ -104,4 +104,10 @@ public class ClassChildResourse {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/total-revenue")
+    public ResponseEntity<Double> calculateTotalRevenue() {
+        double totalRevenue = classChildService.calculateTotalRevenue();
+        return ResponseEntity.ok(totalRevenue);
+    }
 }

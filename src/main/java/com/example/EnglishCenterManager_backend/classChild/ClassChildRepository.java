@@ -27,4 +27,6 @@ public interface ClassChildRepository extends JpaRepository<ClassChild,Integer>{
 
     // @Query("SELECT c.program, c.openning, c.schedule, t.classroom, t.teacher FROM ClassChild c JOIN course c ON  WHERE t.user.id = :userId")
     // List<ClassChild> findByTimetableUserId(@Param("userId") Integer userId);
+
+    List<ClassChild> findByStatus(Integer status);
 }

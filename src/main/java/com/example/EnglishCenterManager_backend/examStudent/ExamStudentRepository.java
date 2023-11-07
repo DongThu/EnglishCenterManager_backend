@@ -13,4 +13,6 @@ public interface ExamStudentRepository extends JpaRepository<ExamStudent, Intege
     
      @Query("SELECT t FROM ExamStudent t WHERE t.user.id = :userId")
     List<ExamStudent> findByUserId(@Param("userId") Integer userId);
+
+    List<ExamStudent> findByUser_NameContainingIgnoreCase(String name);
 }

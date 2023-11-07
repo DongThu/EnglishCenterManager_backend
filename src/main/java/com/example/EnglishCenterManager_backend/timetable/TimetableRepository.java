@@ -23,4 +23,6 @@ public interface TimetableRepository extends JpaRepository<Timetable, Integer>{
     // @Query("SELECT t.id, t.classroom, i.fullName AS teacher_name, c.program, c.openning, c.schedule FROM Timetable t JOIN course c ON t.course.course_id = :courseId JOIN InfoTeacher i ON t.teacher.id = :teacherId JOIN ClassChild cc ON t.course.course_id = :courseId JOIN User u ON cc.user.id = :userId WHERE u.id = :userId")
     // @Query("SELECT t FROM Timetable t JOIN t.course c JOIN t.teacher i JOIN t.ClassChild cc JOIN cc.user u WHERE u.id = :userId")
     // Timetable findTimetableUser(@Param("userId") Integer userId);
+
+    List<Timetable> findByStatus(Integer status);
 }

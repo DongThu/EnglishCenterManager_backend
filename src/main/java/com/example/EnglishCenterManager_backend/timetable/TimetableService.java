@@ -112,4 +112,28 @@ public class TimetableService {
     // public Timetable findTimetableUser(Integer userId){
     //     return timetableRepository.findTimetableUser(userId);
     // }
+
+    public double calculateSalary (Integer timetableId){
+        Timetable timetable = timetableRepository.findTimeTableById(timetableId);
+        course course = timetable.getCourse();
+        InfoTeacher teacher = timetable.getTeacher();
+        double time = course.getTime();
+        double salaryPerLesson = teacher.getLevelSalary();
+    
+        // Tính lương
+        double salary = time * salaryPerLesson;
+    
+        return salary;
+    }
+
+    public double calculateTotalSalary() {
+        List<Timetable> timetables = timetableRepository.findByStatus(1);
+        double totalSalary = 0;
+
+        for (Timetable timetable : timetables) {
+            totalSalary += calculateSalary(timetable.getId());
+        }
+
+        return totalSalary;
+    }
 }

@@ -35,4 +35,7 @@ public class Timetable {
     @JoinColumn(name = "teacherId")
     private InfoTeacher teacher;
 
+    private Integer status = 0;
+
+
 }

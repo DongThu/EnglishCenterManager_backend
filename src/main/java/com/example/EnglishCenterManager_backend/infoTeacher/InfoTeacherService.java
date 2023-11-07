@@ -29,12 +29,14 @@ public class InfoTeacherService {
             return null;
         }
         fromDB.setFullName(teacher.getFullName());
-        fromDB.setImage(teacher.getImage());
+        // fromDB.setImage(teacher.getImage());
         fromDB.setBirthDay(teacher.getBirthDay());
         fromDB.setEmail(teacher.getEmail());
         fromDB.setPhone(teacher.getPhone());
         fromDB.setAddress(teacher.getAddress());
         fromDB.setTeachProgram(teacher.getTeachProgram());
+        fromDB.setLevelSalary(teacher.getLevelSalary());
+
         return teacherRepository.save(fromDB);
     }
      

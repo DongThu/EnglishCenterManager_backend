@@ -103,5 +103,16 @@ public class TimetableResourse {
     //     return timetableService.findTimetableUser(userId);
     // }
     
+    @GetMapping("salary/{id}")
+    public double Salary(@PathVariable("id") Integer timetableId){
+        return timetableService.calculateSalary(timetableId);
+    }
+
+
+    @GetMapping("/total-salary")
+    public ResponseEntity<Double> calculateTotalSalary() {
+        double totalSalary = timetableService.calculateTotalSalary();
+        return ResponseEntity.ok(totalSalary);
+    }
 }
 

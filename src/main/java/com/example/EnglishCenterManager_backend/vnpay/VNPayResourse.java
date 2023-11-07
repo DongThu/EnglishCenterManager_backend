@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.EnglishCenterManager_backend.classChild.ClassChild;
 import com.example.EnglishCenterManager_backend.classChild.ClassChildRepository;
+import com.example.EnglishCenterManager_backend.timetable.Timetable;
+import com.example.EnglishCenterManager_backend.timetable.TimetableRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.websocket.server.PathParam;
@@ -34,10 +36,15 @@ import jakarta.websocket.server.PathParam;
 public class VNPayResourse {
     @Autowired
     private ClassChildRepository contractRepository;
+
+    @Autowired
+    private TimetableRepository timetableRepository;
     @GetMapping("payment-callback")
     public void paymentCallback(@RequestParam Map<String, String> queryParams,HttpServletResponse response) throws IOException {
         String vnp_ResponseCode = queryParams.get("vnp_ResponseCode");
         String contractId = queryParams.get("contractId");
+        String TimetableId = queryParams.get("TimetableId");
+
         if(contractId!= null && !contractId.equals("")) {
             if ("00".equals(vnp_ResponseCode)) {
                 // Giao dịch thành công
@@ -51,6 +58,23 @@ public class VNPayResourse {
                 // Giao dịch thất bại
                 // Thực hiện các xử lý cần thiết, ví dụ: không cập nhật CSDL\
                 response.sendRedirect("http://localhost:4200/user-course-manager");
+                
+            }
+        }
+
+        if(TimetableId!= null && !TimetableId.equals("")) {
+            if ("00".equals(vnp_ResponseCode)) {
+                // Giao dịch thành công
+                // Thực hiện các xử lý cần thiết, ví dụ: cập nhật CSDL
+                Timetable timetable = timetableRepository.findById(Integer.parseInt(queryParams.get("TimetableId")))
+                .orElseThrow(() -> new IllegalArgumentException("Không tồn tại hợp đồng này của sinh viên"));
+            timetable.setStatus(1);
+            timetableRepository.save(timetable);
+            response.sendRedirect("http://localhost:4200/list-timetable-salary");
+            } else {
+                // Giao dịch thất bại
+                // Thực hiện các xử lý cần thiết, ví dụ: không cập nhật CSDL\
+                response.sendRedirect("http://localhost:4200/list-timetable-salary");
                 
             }
         }
@@ -126,7 +150,7 @@ public class VNPayResourse {
 		return paymentUrl;
 	}
     @GetMapping("pay-service")
-	public String getPayService(@PathParam("price") long price,@PathParam("id") Integer registerServiceId) throws UnsupportedEncodingException{
+	public String getPayService(@PathParam("price") long price,@PathParam("id") Integer TimetableId) throws UnsupportedEncodingException{
 		
 		String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
@@ -152,7 +176,7 @@ public class VNPayResourse {
         vnp_Params.put("vnp_OrderType", orderType);
 
         vnp_Params.put("vnp_Locale", "vn");
-        vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl+"?registerServiceId="+registerServiceId);
+        vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl+"?TimetableId="+TimetableId);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));

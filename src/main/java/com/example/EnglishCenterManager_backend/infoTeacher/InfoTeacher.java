@@ -21,12 +21,13 @@ public class InfoTeacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String fullName;
-    private String image;
+    // private String image;
     private LocalDate birthDay;
     private String email;
     private Number phone;
     private String address;
     private String teachProgram;
+    private Integer levelSalary;
 
 
 }

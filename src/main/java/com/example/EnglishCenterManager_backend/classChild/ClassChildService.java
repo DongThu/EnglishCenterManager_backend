@@ -177,4 +177,15 @@ public class ClassChildService {
     public List<ClassChild> findByUserId(Integer userId){
         return classChildRepository.findByUserId(userId);
     }
+
+    public double calculateTotalRevenue() {
+        List<ClassChild> paidClassChildren = classChildRepository.findByStatus(1);
+        double totalRevenue = 0.0;
+
+        for (ClassChild classChild : paidClassChildren) {
+            totalRevenue += classChild.getCourse().getPrice();
+        }
+
+        return totalRevenue;
+    }
 }

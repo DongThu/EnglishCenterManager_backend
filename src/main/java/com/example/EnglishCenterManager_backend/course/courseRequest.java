@@ -16,5 +16,5 @@ public class courseRequest {
     private float price;
     private String schedule;
     private LocalDate openning;
-    private String time;
+    private Integer time;
 }

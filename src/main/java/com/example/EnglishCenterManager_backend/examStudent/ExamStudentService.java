@@ -48,4 +48,8 @@ public class ExamStudentService {
     public List<ExamStudent> findByUserId(Integer userId){
         return examStudentRepository.findByUserId(userId);
     }
+
+    public List<ExamStudent> searchStudentsByName(String name) {
+        return examStudentRepository.findByUser_NameContainingIgnoreCase(name);
+    }
 }

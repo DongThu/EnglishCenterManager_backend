@@ -37,7 +37,7 @@ public class courseService {
     }
     
     @Transactional
-    public void addCourse(Integer id, String program, String level, float price, String schedule, LocalDate openning, String time){
+    public void addCourse(Integer id, String program, String level, float price, String schedule, LocalDate openning, Integer time){
         courseType english = courseTypeRepository.findByIdEnglish(id);
         
         // level level = levelRepository.findByIdLevel(levelId);
