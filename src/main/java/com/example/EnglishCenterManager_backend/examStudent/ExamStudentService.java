@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.EnglishCenterManager_backend.course.course;
 import com.example.EnglishCenterManager_backend.exam.Exam;
 import com.example.EnglishCenterManager_backend.exam.ExamRepository;
+import com.example.EnglishCenterManager_backend.quiz.Quiz;
 import com.example.EnglishCenterManager_backend.user.User;
 import com.example.EnglishCenterManager_backend.user.UserRepository;
 
@@ -51,5 +53,9 @@ public class ExamStudentService {
 
     public List<ExamStudent> searchStudentsByName(String name) {
         return examStudentRepository.findByUser_NameContainingIgnoreCase(name);
+    }
+
+     public List<ExamStudent> getExamStudentsByCourseAndQuiz(course course, Quiz quiz) {
+        return examStudentRepository.findExamStudentsByCourseAndQuiz(course, quiz);
     }
 }

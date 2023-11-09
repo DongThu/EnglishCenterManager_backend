@@ -15,6 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.EnglishCenterManager_backend.course.course;
+import com.example.EnglishCenterManager_backend.course.courseRepository;
+import com.example.EnglishCenterManager_backend.course.courseService;
+import com.example.EnglishCenterManager_backend.quiz.Quiz;
+import com.example.EnglishCenterManager_backend.quiz.QuizRepository;
+import com.example.EnglishCenterManager_backend.quiz.QuizSevice;
+
 
 
 @RestController
@@ -24,6 +31,12 @@ public class ExamStudentResourse {
     
     @Autowired
     private ExamStudentService examStudentService;
+
+    @Autowired
+    private courseRepository courseService;
+
+    @Autowired
+    private QuizRepository quizService;
 
     @PostMapping("")
     public ResponseEntity<String> createExam(@RequestBody ExamStudentRequest request) {
@@ -52,5 +65,17 @@ public class ExamStudentResourse {
     public ResponseEntity<List<ExamStudent>> searchStudentsByName(@RequestParam("name") String name) {
         List<ExamStudent> students = examStudentService.searchStudentsByName(name);
         return ResponseEntity.ok(students);
+    }
+
+    @GetMapping("/filtered")
+    public ResponseEntity<List<ExamStudent>> getFilteredExamStudents(
+            @RequestParam(name = "courseId") Integer courseId,
+            @RequestParam(name = "quizId") Integer quizId) {
+        // Fetch Course and Quiz objects from your database based on courseId and quizId
+        course course = courseService.findById(courseId).get();
+        Quiz quiz = quizService.findById(quizId).get();
+
+        List<ExamStudent> filteredExamStudents = examStudentService.getExamStudentsByCourseAndQuiz(course, quiz);
+        return ResponseEntity.ok(filteredExamStudents);
     }
 }
