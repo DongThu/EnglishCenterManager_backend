@@ -1,9 +1,12 @@
 package com.example.EnglishCenterManager_backend.timetable;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.example.EnglishCenterManager_backend.course.course;
@@ -19,7 +22,7 @@ public class TimetableService {
     private TimetableRepository timetableRepository;
 
     // @Autowired
-    // private EmailService emailService;
+    // private EmailService2 emailService2;
 
     private InfoTeacherRepository infoTeacherRepository;
 
@@ -136,4 +139,19 @@ public class TimetableService {
 
         return totalSalary;
     }
+
+    // @Scheduled(cron = "0 * * * * ?") // Chạy mỗi ngày lúc 8 giờ sáng
+    // public void sendTimetableEmails() {
+    //     LocalDateTime currentDateTime = LocalDateTime.now();
+    //     LocalDateTime oneMinuteAfter = currentDateTime.plusMinutes(1);
+
+    //     List<Timetable> upcomingTimetables = timetableRepository.findByCourse_OpenningGreaterThanEqualAndCourse_OpenningLessThan(oneMinuteAfter, currentDateTime);
+
+    //     for (Timetable timetable : upcomingTimetables) {
+    //         String teacherEmail = timetable.getTeacher().getEmail();
+
+    //         // Gửi email với thông báo khai giảng
+    //         emailService2.sendOpeningNotification(teacherEmail, timetable);
+    //     }
+    // }
 }

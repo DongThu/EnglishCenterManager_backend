@@ -114,5 +114,7 @@ public class TimetableResourse {
         double totalSalary = timetableService.calculateTotalSalary();
         return ResponseEntity.ok(totalSalary);
     }
+
+    
 }
 

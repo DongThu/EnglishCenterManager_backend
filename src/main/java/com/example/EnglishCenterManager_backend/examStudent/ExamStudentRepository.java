@@ -21,8 +21,8 @@ public interface ExamStudentRepository extends JpaRepository<ExamStudent, Intege
 
     @Query("SELECT es FROM ExamStudent es " +
            "JOIN es.exam e " +
-           "WHERE e.course = :course " +
-           "AND e.quiz = :quiz")
+           "WHERE (:course is null OR e.course = :course) " +
+           "AND (:quiz is null OR e.quiz = :quiz)")
     List<ExamStudent> findExamStudentsByCourseAndQuiz(@Param("course") course course,
                                                       @Param("quiz") Quiz quiz);
 }

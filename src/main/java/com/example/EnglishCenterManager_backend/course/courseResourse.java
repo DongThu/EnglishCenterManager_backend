@@ -82,4 +82,9 @@ public class courseResourse {
     public List<course> findByEnglishId5(){
        return courseService.findCoursesByEnglishId5();
     }
+
+    @GetMapping("/by-month/{month}")
+    public List<course> getCoursesByMonth(@PathVariable int month) {
+        return courseService.findCoursesByMonth(month);
+    }
 }

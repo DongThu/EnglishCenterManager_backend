@@ -102,4 +102,8 @@ public class courseService {
         List<course> courses = courseRepository.findByEnglishId(5);
         return courses;
     }
+
+    public List<course> findCoursesByMonth(int month) {
+        return courseRepository.findCoursesByMonth(month);
+    }
 }

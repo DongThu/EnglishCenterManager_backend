@@ -1,5 +1,7 @@
 package com.example.EnglishCenterManager_backend.timetable;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
 
 
 @Repository
@@ -25,4 +28,7 @@ public interface TimetableRepository extends JpaRepository<Timetable, Integer>{
     // Timetable findTimetableUser(@Param("userId") Integer userId);
 
     List<Timetable> findByStatus(Integer status);
+
+    List<Timetable> findByCourse_OpenningGreaterThanEqualAndCourse_OpenningLessThan(LocalDateTime start, LocalDateTime end);
+    // List<Timetable> findByTeacherAndOpenning(InfoTeacher teacher, LocalDate openning);
 }

@@ -31,4 +31,7 @@ public interface courseRepository extends JpaRepository<course, Integer>{
     // List<Object[]> findClassChildWithUserName(@Param("courseId") Integer courseId);
 
     List<course> findByEnglishId(Integer englishId);
+
+    @Query("SELECT c FROM course c WHERE MONTH(c.openning) = :month")
+    List<course> findCoursesByMonth(@Param("month") int month);
 }

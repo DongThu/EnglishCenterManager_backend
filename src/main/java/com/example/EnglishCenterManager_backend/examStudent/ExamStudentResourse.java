@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.EnglishCenterManager_backend.course.course;
 import com.example.EnglishCenterManager_backend.course.courseRepository;
-import com.example.EnglishCenterManager_backend.course.courseService;
 import com.example.EnglishCenterManager_backend.quiz.Quiz;
 import com.example.EnglishCenterManager_backend.quiz.QuizRepository;
-import com.example.EnglishCenterManager_backend.quiz.QuizSevice;
 
 
 
@@ -67,15 +65,39 @@ public class ExamStudentResourse {
         return ResponseEntity.ok(students);
     }
 
+    // @GetMapping("/filtered")
+    // public ResponseEntity<List<ExamStudent>> getFilteredExamStudents(
+    //         @RequestParam(name = "courseId") Integer courseId,
+    //         @RequestParam(name = "quizId") Integer quizId) {
+    //     // Fetch Course and Quiz objects from your database based on courseId and quizId
+    //     course course = (courseId != null) ? courseService.findById(courseId).orElse(null) : null;
+    //     Quiz quiz = (quizId != null) ? quizService.findById(quizId).orElse(null) : null;
+
+    //     List<ExamStudent> filteredExamStudents = examStudentService.getExamStudentsByCourseAndQuiz(course, quiz);
+    //     return ResponseEntity.ok(filteredExamStudents);
+    // }
+
     @GetMapping("/filtered")
     public ResponseEntity<List<ExamStudent>> getFilteredExamStudents(
-            @RequestParam(name = "courseId") Integer courseId,
-            @RequestParam(name = "quizId") Integer quizId) {
-        // Fetch Course and Quiz objects from your database based on courseId and quizId
-        course course = courseService.findById(courseId).get();
-        Quiz quiz = quizService.findById(quizId).get();
+        @RequestParam(name = "courseId", required = false) String courseIdStr,
+        @RequestParam(name = "quizId", required = false) String quizIdStr) {
 
-        List<ExamStudent> filteredExamStudents = examStudentService.getExamStudentsByCourseAndQuiz(course, quiz);
-        return ResponseEntity.ok(filteredExamStudents);
+    Integer courseId = parseInteger(courseIdStr);
+    Integer quizId = parseInteger(quizIdStr);
+
+    course course = (courseId != null) ? courseService.findById(courseId).orElse(null) : null;
+    Quiz quiz = (quizId != null) ? quizService.findById(quizId).orElse(null) : null;
+
+    List<ExamStudent> filteredExamStudents = examStudentService.getExamStudentsByCourseAndQuiz(course, quiz);
+    return ResponseEntity.ok(filteredExamStudents);
+}
+
+private Integer parseInteger(String str) {
+    try {
+        return (str != null && !str.trim().isEmpty()) ? Integer.parseInt(str) : null;
+    } catch (NumberFormatException e) {
+        return null; // Xử lý trường hợp chuỗi không phải là số nguyên hợp lệ
     }
+}
+
 }
