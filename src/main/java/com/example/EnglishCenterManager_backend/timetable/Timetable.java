@@ -2,7 +2,6 @@ package com.example.EnglishCenterManager_backend.timetable;
 
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import com.example.EnglishCenterManager_backend.course.course;
 import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacher;
@@ -41,7 +40,7 @@ public class Timetable {
     private Integer status = 0;
 
 
-    // public LocalDateTime getOpenning() {
-    //     return this.course.getOpenning();
-    // }
+    public LocalDate getOpenning() {
+        return this.course.getOpenning();
+    }
 }

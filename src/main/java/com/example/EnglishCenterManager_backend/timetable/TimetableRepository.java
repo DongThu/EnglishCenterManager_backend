@@ -1,7 +1,6 @@
 package com.example.EnglishCenterManager_backend.timetable;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +28,8 @@ public interface TimetableRepository extends JpaRepository<Timetable, Integer>{
 
     List<Timetable> findByStatus(Integer status);
 
-    List<Timetable> findByCourse_OpenningGreaterThanEqualAndCourse_OpenningLessThan(LocalDateTime start, LocalDateTime end);
+    List<Timetable> findByCourse_OpenningGreaterThanEqualAndCourse_OpenningLessThan(LocalDate start, LocalDate end);
     // List<Timetable> findByTeacherAndOpenning(InfoTeacher teacher, LocalDate openning);
+    @Query("SELECT t FROM Timetable t WHERE t.course.openning >= :start AND t.course.openning < :end")
+    List<Timetable> findTimetablesByCourseOpenningBetween(@Param("start") LocalDate start, @Param("end") LocalDate end);
 }

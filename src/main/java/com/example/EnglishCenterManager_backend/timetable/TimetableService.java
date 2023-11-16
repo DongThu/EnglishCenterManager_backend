@@ -21,8 +21,8 @@ public class TimetableService {
     @Autowired
     private TimetableRepository timetableRepository;
 
-    // @Autowired
-    // private EmailService2 emailService2;
+    @Autowired
+    private EmailService2 emailService2;
 
     private InfoTeacherRepository infoTeacherRepository;
 
@@ -140,18 +140,25 @@ public class TimetableService {
         return totalSalary;
     }
 
-    // @Scheduled(cron = "0 * * * * ?") // Chạy mỗi ngày lúc 8 giờ sáng
-    // public void sendTimetableEmails() {
-    //     LocalDateTime currentDateTime = LocalDateTime.now();
-    //     LocalDateTime oneMinuteAfter = currentDateTime.plusMinutes(1);
+    @Scheduled(cron = "0/1 * * * * ?")
+    // @Scheduled(cron = "0 0 0 * * 0")
+    // @Scheduled(cron = "0 0 0 */2 * ?")
+    public void sendTimetableEmails() {
+        // System.out.println("Scheduled task is running at " + LocalDateTime.now());
+        LocalDate currentDate = LocalDate.now();
+        LocalDate oneDayBefore = currentDate.plusDays(2);
 
-    //     List<Timetable> upcomingTimetables = timetableRepository.findByCourse_OpenningGreaterThanEqualAndCourse_OpenningLessThan(oneMinuteAfter, currentDateTime);
+        List<Timetable> upcomingTimetables = timetableRepository.findTimetablesByCourseOpenningBetween(currentDate,oneDayBefore);
 
-    //     for (Timetable timetable : upcomingTimetables) {
-    //         String teacherEmail = timetable.getTeacher().getEmail();
+        for (Timetable timetable : upcomingTimetables) {
+            // System.out.println("Processing timetable with openning: " + timetable.getCourse().getOpenning());
+            String teacherEmail = timetable.getTeacher().getEmail();
 
-    //         // Gửi email với thông báo khai giảng
-    //         emailService2.sendOpeningNotification(teacherEmail, timetable);
-    //     }
-    // }
+            // Gửi email với thông báo khai giảng
+            // emailService2.sendOpeningNotification(teacherEmail, timetable);
+            // System.out.println("Email sent to: " + timetable);
+            // System.out.println("Email sent to: " + teacherEmail);
+            
+        }
+    }
 }

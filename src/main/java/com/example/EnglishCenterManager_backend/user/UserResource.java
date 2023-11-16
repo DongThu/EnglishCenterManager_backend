@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.EnglishCenterManager_backend.authentication.AuthResponseDTO;
+import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacher;
 import com.example.EnglishCenterManager_backend.login.LoginDTO;
 import com.example.EnglishCenterManager_backend.message.SuccessMessage;
 
@@ -74,4 +76,11 @@ public class UserResource {
                 return ResponseEntity.notFound().build();
             }
         }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<User> updateTeacher(@PathVariable("id") Integer id, @RequestBody User user){
+        userService.updateUser(id,user);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+    
 }

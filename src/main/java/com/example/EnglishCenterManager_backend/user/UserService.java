@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.EnglishCenterManager_backend.config.JwtGenerator;
 import com.example.EnglishCenterManager_backend.exception.UsernameAlreadyExistsException;
+import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacher;
 import com.example.EnglishCenterManager_backend.login.LoginDTO;
 import com.example.EnglishCenterManager_backend.role.Role;
 import com.example.EnglishCenterManager_backend.role.RoleRepository;
@@ -105,6 +106,20 @@ public class UserService {
     }
 
     public void findByUsernameusername() {
+    }
+
+    public User updateUser(Integer id, User user) {
+        User fromDB = userRepository.findById(id).orElse(null);
+        if (fromDB == null){
+            return null;
+        }
+        fromDB.setName(user.getName());
+        fromDB.setAddress(user.getAddress());
+        fromDB.setBirthday(user.getBirthday());
+        fromDB.setPhone(user.getPhone());
+        fromDB.setUsername(user.getUsername());
+        fromDB.setPassword(user.getPassword());
+        return userRepository.save(fromDB);
     }
 }
 

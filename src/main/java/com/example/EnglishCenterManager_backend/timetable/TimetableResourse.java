@@ -1,5 +1,6 @@
 package com.example.EnglishCenterManager_backend.timetable;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.EnglishCenterManager_backend.course.course;
 import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacherRepository;
 
 
@@ -28,10 +30,16 @@ public class TimetableResourse {
     private TimetableService timetableService;
     
     @Autowired
+    private TimetableRepository timetableRepository;
+
+    @Autowired
     private InfoTeacherRepository infoTeacheRepository;
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private EmailService2 emailService2;
 
     @PostMapping("")
     public ResponseEntity<String> createTimetable(@RequestBody TimetableRequestDTO request) {
@@ -115,6 +123,42 @@ public class TimetableResourse {
         return ResponseEntity.ok(totalSalary);
     }
 
+    // @GetMapping("/send")
+    // public String sendTimetableReminders() {
+    //     timetableService.sendTimetableEmails();
+    //     return "Reminders sent successfully!";
+    // }
+ 
     
+    // @GetMapping("/sendEmail2/{teacherId}")
+    // public Timetable sendTimetableEmail2(@PathVariable Integer teacherId) {
+    //     Timetable timetables = timetableRepository.findById(teacherId).get();
+    //     String teacherEmail = infoTeacheRepository.getTeacherEmailById(teacherId);
+    //     emailService2.sendOpeningNotification(teacherEmail, timetables);
+    //     return timetables;
+    // }
+
+    // @GetMapping("/send")
+    // public String sendEmailManually() {
+    //     try {
+    //         // Gửi email với thông báo khai giảng
+    //         emailService2.sendOpeningNotification("dongthu1512@gmail.com", createSampleTimetable());
+    //         return "Email sent manually!";
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //         return "Failed to send email manually!";
+    //     }
+    // }
+
+    // private Timetable createSampleTimetable() {
+    //     Timetable timetable = new Timetable();
+    //     course course = new course();
+    //     course.setProgram("English Course");
+    //     course.setOpenning(LocalDate.now().plusDays(1)); // Thiết lập ngày mở khóa học vào ngày mai
+    //     course.setSchedule("Mon, Wed, Fri 10:00 AM - 12:00 PM");
+    //     timetable.setCourse(course);
+    //     timetable.setClassroom("101");
+    //     return timetable;
+    // }
 }
 
