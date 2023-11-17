@@ -29,5 +29,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("SELECT c FROM User c WHERE c.id = :id")
     User findUserById(@Param("id") Integer id);
 
-    
+    List<User> findByNameContainingOrUsernameContaining(String name, String email);
 }

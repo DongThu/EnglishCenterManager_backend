@@ -4,14 +4,16 @@ import org.springframework.stereotype.Service;
 
 import com.example.EnglishCenterManager_backend.course.course;
 import com.example.EnglishCenterManager_backend.course.courseRepository;
+import com.example.EnglishCenterManager_backend.timetable.Timetable;
 import com.example.EnglishCenterManager_backend.user.User;
 import com.example.EnglishCenterManager_backend.user.UserRepository;
 
-
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 
 @Service
 public class ClassChildService {
@@ -19,6 +21,8 @@ public class ClassChildService {
     @Autowired
     private ClassChildRepository classChildRepository;
 
+     @Autowired
+    private EmailService3 emailService3;
     private UserRepository userRepository;
 
     private courseRepository courseRepository;
@@ -187,5 +191,27 @@ public class ClassChildService {
         }
 
         return totalRevenue;
+    }
+
+    @Scheduled(cron = "0/1 * * * * ?")
+    // @Scheduled(cron = "0 0 0 * * 0")
+    // @Scheduled(cron = "0 0 0 */2 * ?")
+    public void sendTimetableEmails() {
+        // System.out.println("Scheduled task is running at " + LocalDateTime.now());
+        LocalDate currentDate = LocalDate.now();
+        LocalDate oneDayBefore = currentDate.plusDays(2);
+
+        List<ClassChild> upcomingTimetables = classChildRepository.findTimetablesByCourseOpenningBetween(currentDate,oneDayBefore);
+
+        for (ClassChild timetable : upcomingTimetables) {
+            // System.out.println("Processing timetable with openning: " + timetable.getCourse().getOpenning());
+            String teacherEmail = timetable.getUser().getUsername();
+
+            // Gửi email với thông báo khai giảng
+            // emailService3.sendOpeningNotification(teacherEmail, timetable);
+            // System.out.println("Email sent to: " + timetable);
+            // System.out.println("Email sent to: " + teacherEmail);
+            
+        }
     }
 }

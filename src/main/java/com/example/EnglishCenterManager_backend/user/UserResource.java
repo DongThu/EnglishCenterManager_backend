@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.EnglishCenterManager_backend.authentication.AuthResponseDTO;
@@ -81,6 +82,11 @@ public class UserResource {
     public ResponseEntity<User> updateTeacher(@PathVariable("id") Integer id, @RequestBody User user){
         userService.updateUser(id,user);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("/search")
+    public List<User> findByNameContainingOrUsernameContaining(@RequestParam String name) {
+        return userService.findByNameContainingOrUsernameContaining(name);
     }
     
 }

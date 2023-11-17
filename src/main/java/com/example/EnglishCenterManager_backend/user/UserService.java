@@ -121,5 +121,9 @@ public class UserService {
         fromDB.setPassword(user.getPassword());
         return userRepository.save(fromDB);
     }
+
+    public List<User> findByNameContainingOrUsernameContaining(String name) {
+        return userRepository.findByNameContainingOrUsernameContaining(name, name);
+    }
 }
 

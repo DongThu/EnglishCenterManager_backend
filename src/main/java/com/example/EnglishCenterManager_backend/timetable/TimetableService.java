@@ -96,6 +96,26 @@ public class TimetableService {
         return timetableRepository.findById(id);
     }
 
+    public Timetable updateTimetable(Integer timetableId, Integer courseId, String classroom, Integer teacherId) {
+        Timetable existingTimetable = timetableRepository.findById(timetableId)
+                .orElseThrow(() -> new IllegalArgumentException("Thông tin thời khóa biểu không tồn tại"));
+
+        course updatedCourse = courseRepository.findCourseById(courseId);
+        InfoTeacher updatedTeacher = infoTeacherRepository.findTeacherById(teacherId);
+
+        if (updatedCourse == null) {
+            throw new IllegalArgumentException("Thông tin course bạn nhập không hiện có");
+        } else if (updatedTeacher == null) {
+            throw new IllegalArgumentException("Thông tin infoTeacher bạn nhập không hiện có");
+        }
+
+        existingTimetable.setClassroom(classroom);
+        existingTimetable.setCourse(updatedCourse);
+        existingTimetable.setTeacher(updatedTeacher);
+
+        return timetableRepository.save(existingTimetable);
+    }
+    
     public List<Timetable> findByTeacherId(Integer teacherId){
             return timetableRepository.findByTeacherId(teacherId);
     }

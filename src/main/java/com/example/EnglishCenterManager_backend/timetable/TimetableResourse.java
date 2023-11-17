@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.EnglishCenterManager_backend.course.course;
@@ -123,42 +125,15 @@ public class TimetableResourse {
         return ResponseEntity.ok(totalSalary);
     }
 
-    // @GetMapping("/send")
-    // public String sendTimetableReminders() {
-    //     timetableService.sendTimetableEmails();
-    //     return "Reminders sent successfully!";
-    // }
- 
-    
-    // @GetMapping("/sendEmail2/{teacherId}")
-    // public Timetable sendTimetableEmail2(@PathVariable Integer teacherId) {
-    //     Timetable timetables = timetableRepository.findById(teacherId).get();
-    //     String teacherEmail = infoTeacheRepository.getTeacherEmailById(teacherId);
-    //     emailService2.sendOpeningNotification(teacherEmail, timetables);
-    //     return timetables;
-    // }
-
-    // @GetMapping("/send")
-    // public String sendEmailManually() {
-    //     try {
-    //         // Gửi email với thông báo khai giảng
-    //         emailService2.sendOpeningNotification("dongthu1512@gmail.com", createSampleTimetable());
-    //         return "Email sent manually!";
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //         return "Failed to send email manually!";
-    //     }
-    // }
-
-    // private Timetable createSampleTimetable() {
-    //     Timetable timetable = new Timetable();
-    //     course course = new course();
-    //     course.setProgram("English Course");
-    //     course.setOpenning(LocalDate.now().plusDays(1)); // Thiết lập ngày mở khóa học vào ngày mai
-    //     course.setSchedule("Mon, Wed, Fri 10:00 AM - 12:00 PM");
-    //     timetable.setCourse(course);
-    //     timetable.setClassroom("101");
-    //     return timetable;
-    // }
+    @PutMapping("/{id}")
+    public ResponseEntity<Timetable> updateTimetable(
+            @PathVariable Integer id,
+            @RequestParam Integer courseId,
+            @RequestParam String classroom,
+            @RequestParam Integer teacherId
+    ) {
+        Timetable updatedTimetable = timetableService.updateTimetable(id, courseId, classroom, teacherId);
+        return new ResponseEntity<>(updatedTimetable, HttpStatus.OK);
+    }
 }
 

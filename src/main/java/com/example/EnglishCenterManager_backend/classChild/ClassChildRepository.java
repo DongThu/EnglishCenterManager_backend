@@ -1,10 +1,13 @@
 package com.example.EnglishCenterManager_backend.classChild;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import com.example.EnglishCenterManager_backend.timetable.Timetable;
 
 
 
@@ -29,4 +32,8 @@ public interface ClassChildRepository extends JpaRepository<ClassChild,Integer>{
     // List<ClassChild> findByTimetableUserId(@Param("userId") Integer userId);
 
     List<ClassChild> findByStatus(Integer status);
+
+    @Query("SELECT t FROM ClassChild t WHERE t.course.openning >= :start AND t.course.openning < :end")
+    List<ClassChild> findTimetablesByCourseOpenningBetween(@Param("start") LocalDate start, @Param("end") LocalDate end);
+
 }
