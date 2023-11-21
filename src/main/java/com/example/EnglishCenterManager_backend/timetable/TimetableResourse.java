@@ -128,9 +128,9 @@ public class TimetableResourse {
     @PutMapping("/{id}")
     public ResponseEntity<Timetable> updateTimetable(
             @PathVariable Integer id,
-            @RequestParam Integer courseId,
-            @RequestParam String classroom,
-            @RequestParam Integer teacherId
+            @RequestBody Integer courseId,
+            @RequestBody String classroom,
+            @RequestBody Integer teacherId
     ) {
         Timetable updatedTimetable = timetableService.updateTimetable(id, courseId, classroom, teacherId);
         return new ResponseEntity<>(updatedTimetable, HttpStatus.OK);

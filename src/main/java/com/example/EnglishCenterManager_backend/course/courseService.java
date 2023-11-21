@@ -41,7 +41,11 @@ public class courseService {
         courseType english = courseTypeRepository.findByIdEnglish(id);
         
         // level level = levelRepository.findByIdLevel(levelId);
-
+        // Kiểm tra xem ngày khai giảng có lớn hơn ngày hiện tại không
+        if (openning.isBefore(LocalDate.now())) {
+            // Ném một ngoại lệ, ghi log lỗi hoặc xử lý tình huống tùy thuộc vào nhu cầu cụ thể của bạn
+            throw new IllegalArgumentException("Ngày khai giảng phải lớn hơn ngày hiện tại");
+        }
         course course2 = new course();
         
         course2.setEnglish(english);

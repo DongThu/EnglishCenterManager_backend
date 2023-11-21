@@ -13,7 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.EnglishCenterManager_backend.course.course;
+import com.example.EnglishCenterManager_backend.course.courseRepository;
+import com.example.EnglishCenterManager_backend.course.courseService;
 
 
 @RestController
@@ -23,6 +28,8 @@ public class ClassChildResourse {
     @Autowired
     private ClassChildService classChildService;
 
+    @Autowired
+    private courseRepository courseRepository;
 
     @GetMapping("/all")
     public List<ClassChild> getAllCourse() {
@@ -109,5 +116,14 @@ public class ClassChildResourse {
     public ResponseEntity<Double> calculateTotalRevenue() {
         double totalRevenue = classChildService.calculateTotalRevenue();
         return ResponseEntity.ok(totalRevenue);
+    }
+
+    @GetMapping("/registrations")
+    public ResponseEntity<List<ClassChild>> getRegistrationsForCourse(@RequestParam Integer courseId) {
+        course course = courseRepository.findCourseById(courseId);
+
+        List<ClassChild> registrations = classChildService.getRegistrationsForCourse(course);
+
+        return new ResponseEntity<>(registrations, HttpStatus.OK);
     }
 }

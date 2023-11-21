@@ -214,4 +214,8 @@ public class ClassChildService {
             
         }
     }
+
+    public List<ClassChild> getRegistrationsForCourse(course course) {
+        return classChildRepository.findByCourse(course);
+    }
 }
