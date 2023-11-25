@@ -208,9 +208,9 @@ public class ClassChildService {
             String teacherEmail = timetable.getUser().getUsername();
 
             // Gửi email với thông báo khai giảng
-            // emailService3.sendOpeningNotification(teacherEmail, timetable);
-            // System.out.println("Email sent to: " + timetable);
-            // System.out.println("Email sent to: " + teacherEmail);
+            emailService3.sendOpeningNotification(teacherEmail, timetable);
+            System.out.println("Email sent to: " + timetable);
+            System.out.println("Email sent to: " + teacherEmail);
             
         }
     }
