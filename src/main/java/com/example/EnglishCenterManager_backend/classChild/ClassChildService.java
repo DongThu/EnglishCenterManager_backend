@@ -193,9 +193,10 @@ public class ClassChildService {
         return totalRevenue;
     }
 
-    @Scheduled(cron = "0/1 * * * * ?")
+    // @Scheduled(cron = "0/1 * * * * ?")
     // @Scheduled(cron = "0 0 0 * * 0")
     // @Scheduled(cron = "0 0 0 */2 * ?")
+    @Scheduled(cron = "0 0/2 * * * ?")
     public void sendTimetableEmails() {
         // System.out.println("Scheduled task is running at " + LocalDateTime.now());
         LocalDate currentDate = LocalDate.now();

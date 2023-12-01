@@ -9,6 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.example.EnglishCenterManager_backend.course.course;
+import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacher;
+
 
 
 @Repository
@@ -32,4 +35,7 @@ public interface TimetableRepository extends JpaRepository<Timetable, Integer>{
     // List<Timetable> findByTeacherAndOpenning(InfoTeacher teacher, LocalDate openning);
     @Query("SELECT t FROM Timetable t WHERE t.course.openning >= :start AND t.course.openning < :end")
     List<Timetable> findTimetablesByCourseOpenningBetween(@Param("start") LocalDate start, @Param("end") LocalDate end);
+
+    boolean existsByClassroomAndCourse_Schedule(String classroom, String schedule);
+
 }

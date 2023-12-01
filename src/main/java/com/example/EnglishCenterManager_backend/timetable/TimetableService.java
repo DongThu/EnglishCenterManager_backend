@@ -48,6 +48,11 @@ public class TimetableService {
             throw new IllegalArgumentException("Thông tin infoTeacher bạn nhập không hiện có");
         }
 
+         // Kiểm tra xem lịch trình đã tồn tại với giờ học và phòng học hay chưa
+        if (timetableRepository.existsByClassroomAndCourse_Schedule(classroom, course.getSchedule())) {
+            throw new IllegalArgumentException("Lịch trình với giờ học và phòng học đã tồn tại");
+        }
+
         Timetable timetable = new Timetable();
 
         timetable.setClassroom(classroom);
@@ -160,7 +165,7 @@ public class TimetableService {
         return totalSalary;
     }
 
-    @Scheduled(cron = "0/1 * * * * ?")
+    @Scheduled(cron = "0 0/2 * * * ?")
     // @Scheduled(cron = "0 0 0 * * 0")
     // @Scheduled(cron = "0 0 0 */2 * ?")
     public void sendTimetableEmails() {
