@@ -18,4 +18,7 @@ public interface InfoTeacherRepository extends JpaRepository<InfoTeacher,Integer
 
     @Query("SELECT email FROM InfoTeacher WHERE id = :id")
     String getTeacherEmailById(@Param("id") Integer id);
+
+    @Query("SELECT teachProgram FROM InfoTeacher WHERE id = :id")
+    String findByTeachProgram(@Param("id") Integer id);
 }

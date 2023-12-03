@@ -46,11 +46,22 @@ public class TimetableService {
         }
         else if ( infoTeacher == null){
             throw new IllegalArgumentException("Thông tin infoTeacher bạn nhập không hiện có");
-        }
+        } else
 
          // Kiểm tra xem lịch trình đã tồn tại với giờ học và phòng học hay chưa
         if (timetableRepository.existsByClassroomAndCourse_Schedule(classroom, course.getSchedule())) {
             throw new IllegalArgumentException("Lịch trình với giờ học và phòng học đã tồn tại");
+        }
+        // else
+        // if(courseRepository.findEnglishNameByCourseId(courseId) != infoTeacherRepository.findByTeachProgram(teacherId))  {
+        //     throw new IllegalArgumentException("Lịch dạy không phù hợp với chương trình dạy của giảng viên");
+        // }      
+
+        String englishName = courseRepository.findEnglishNameByCourseId(courseId);
+        String teacherProgram = infoTeacherRepository.findByTeachProgram(teacherId);
+
+        if (englishName == null || teacherProgram == null || !englishName.equals(teacherProgram)) {
+            throw new IllegalArgumentException("Lịch dạy không phù hợp với chương trình dạy của giảng viên");
         }
 
         Timetable timetable = new Timetable();

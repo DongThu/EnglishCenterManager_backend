@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface courseRepository extends JpaRepository<course, Integer>{
 
     // course findByProgram(String program);
-        @Query("SELECT u FROM course u WHERE u.program = :program")
+    @Query("SELECT u FROM course u WHERE u.program = :program")
     course findByProgram(@Param("program") String program);
 
     
@@ -34,4 +34,7 @@ public interface courseRepository extends JpaRepository<course, Integer>{
 
     @Query("SELECT c FROM course c WHERE MONTH(c.openning) = :month")
     List<course> findCoursesByMonth(@Param("month") int month);
+
+    @Query("SELECT c.english.englishName FROM course c WHERE c.id = :id")
+    String findEnglishNameByCourseId(@Param("id") Integer id);
 }
