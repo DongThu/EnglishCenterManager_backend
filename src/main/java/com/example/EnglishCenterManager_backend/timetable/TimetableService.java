@@ -41,6 +41,10 @@ public class TimetableService {
 
         InfoTeacher  infoTeacher = infoTeacherRepository.findTeacherById(teacherId);
 
+       //String shedule = courseRepository.findScheduleByCourseId(courseId);
+
+       
+
         if(course == null){
             throw new IllegalArgumentException("Thông tin course bạn nhập không hiện có");
         }
@@ -56,7 +60,10 @@ public class TimetableService {
         // if(courseRepository.findEnglishNameByCourseId(courseId) != infoTeacherRepository.findByTeachProgram(teacherId))  {
         //     throw new IllegalArgumentException("Lịch dạy không phù hợp với chương trình dạy của giảng viên");
         // }      
-
+        if (timetableRepository.existsByTeacher_IdAndCourse_Schedule(teacherId, course.getSchedule())) {
+            throw new IllegalArgumentException("Giáo viên với giờ học và phòng học đã tồn tại");
+        }
+       
         String englishName = courseRepository.findEnglishNameByCourseId(courseId);
         String teacherProgram = infoTeacherRepository.findByTeachProgram(teacherId);
 
@@ -191,7 +198,7 @@ public class TimetableService {
             String teacherEmail = timetable.getTeacher().getEmail();
 
             // Gửi email với thông báo khai giảng
-            // emailService2.sendOpeningNotification(teacherEmail, timetable);
+            emailService2.sendOpeningNotification(teacherEmail, timetable);
             // System.out.println("Email sent to: " + timetable);
             // System.out.println("Email sent to: " + teacherEmail);
             

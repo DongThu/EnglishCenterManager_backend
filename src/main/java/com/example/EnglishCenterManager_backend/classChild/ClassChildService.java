@@ -163,6 +163,17 @@ public class ClassChildService {
             throw new IllegalArgumentException("Invalid email or course name");
         }
 
+        // Lấy ngày khai giảng từ repository
+        // LocalDate openningDate = courseRepository.findByOpenning(id);
+
+        // Lấy ngày hiện tại
+        LocalDate currentDate = LocalDate.now();
+
+        // if (openningDate != null && openningDate.isBefore(currentDate)) {
+        //     // Ngày khai giảng nhỏ hơn ngày hiện tại, không cho đăng ký
+        //      throw new IllegalArgumentException("Không thể đăng ký vì ngày khai giảng đã qua.");
+        // } 
+
         ClassChild classChild = new ClassChild();
         classChild.setUser(user);
         classChild.setCourse(course);

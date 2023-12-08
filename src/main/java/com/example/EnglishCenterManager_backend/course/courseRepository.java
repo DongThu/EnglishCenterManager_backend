@@ -24,6 +24,8 @@ public interface courseRepository extends JpaRepository<course, Integer>{
 
     course findByProgramAndOpenning(String program, LocalDate openning);
 
+    @Query("SELECT c FROM course c WHERE c.id = :id")
+    LocalDate findByOpenning(@Param("id") Integer id);
     // @Query("SELECT c FROM course c WHERE c.courseType = :courseType")
     // public course findCourseByCourseType(@Param("coursetype") courseType coursetype);
 
@@ -37,4 +39,7 @@ public interface courseRepository extends JpaRepository<course, Integer>{
 
     @Query("SELECT c.english.englishName FROM course c WHERE c.id = :id")
     String findEnglishNameByCourseId(@Param("id") Integer id);
+
+    // @Query("SELECT c.schedule FROM Course c WHERE c.id = :id")
+    // String findScheduleByCourseId(@Param("id") Integer id);
 }

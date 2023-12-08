@@ -38,4 +38,5 @@ public interface TimetableRepository extends JpaRepository<Timetable, Integer>{
 
     boolean existsByClassroomAndCourse_Schedule(String classroom, String schedule);
 
+    boolean existsByTeacher_IdAndCourse_Schedule(Integer teacherId, String schedule);
 }
