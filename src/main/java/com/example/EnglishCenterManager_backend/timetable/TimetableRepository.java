@@ -9,10 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.EnglishCenterManager_backend.course.course;
-import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacher;
-
-
 
 @Repository
 public interface TimetableRepository extends JpaRepository<Timetable, Integer>{

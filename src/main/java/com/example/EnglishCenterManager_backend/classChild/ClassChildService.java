@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.EnglishCenterManager_backend.course.course;
 import com.example.EnglishCenterManager_backend.course.courseRepository;
-import com.example.EnglishCenterManager_backend.timetable.Timetable;
 import com.example.EnglishCenterManager_backend.user.User;
 import com.example.EnglishCenterManager_backend.user.UserRepository;
 

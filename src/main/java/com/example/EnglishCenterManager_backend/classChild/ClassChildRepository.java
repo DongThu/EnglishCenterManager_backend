@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.example.EnglishCenterManager_backend.course.course;
-import com.example.EnglishCenterManager_backend.timetable.Timetable;
 
 
 

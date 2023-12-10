@@ -1,7 +1,6 @@
 package com.example.EnglishCenterManager_backend.timetable;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -199,8 +198,8 @@ public class TimetableService {
 
             // Gửi email với thông báo khai giảng
             emailService2.sendOpeningNotification(teacherEmail, timetable);
-            // System.out.println("Email sent to: " + timetable);
-            // System.out.println("Email sent to: " + teacherEmail);
+            System.out.println("Email sent to: " + timetable);
+            System.out.println("Email sent to: " + teacherEmail);
             
         }
     }
