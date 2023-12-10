@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.EnglishCenterManager_backend.config.JwtGenerator;
 import com.example.EnglishCenterManager_backend.exception.UsernameAlreadyExistsException;
-import com.example.EnglishCenterManager_backend.infoTeacher.InfoTeacher;
 import com.example.EnglishCenterManager_backend.login.LoginDTO;
 import com.example.EnglishCenterManager_backend.role.Role;
 import com.example.EnglishCenterManager_backend.role.RoleRepository;
